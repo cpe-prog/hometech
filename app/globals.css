@@ -70,3 +70,7 @@ body {
 		@apply bg-background text-foreground;
 	}
 }
+
+.customShadow {
+	text-shadow: 1px 1px 1px #5becff, 3px 3px 5px rgb(0, 125, 156);
+}

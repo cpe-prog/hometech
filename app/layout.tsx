@@ -1,3 +1,6 @@
+import "@/components/footer";
+import Footer from "@/components/footer";
+import NavBar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -34,7 +37,9 @@ export default function RootLayout({
 					defaultTheme="dark"
 					disableTransitionOnChange
 				>
+					<NavBar />
 					{children}
+					<Footer />
 				</ThemeProvider>
 			</body>
 		</html>
