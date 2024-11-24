@@ -72,5 +72,5 @@ body {
 }
 
 .customShadow {
-	text-shadow: 1px 1px 1px #5becff, 3px 3px 5px rgb(0, 125, 156);
+	text-shadow: #86b7ff 0px 0px 12px;
 }
