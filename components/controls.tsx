@@ -3,6 +3,7 @@
 
 import { Button } from "@/components/ui/button";
 
+import { Card } from "@/components/ui/card";
 import { controlData } from "@/lib/data";
 import database from "@/lib/firebase.config";
 import { ref, set } from "firebase/database";
@@ -50,8 +51,8 @@ export default function Controls() {
 
 	return (
 		<>
-			<h3 className="font-bold mt-14 text-2xl text-cyan-300">Controls</h3>
-			<div className=" mt-5 grid justify-center grid-cols-2  self-center gap-10">
+			<h3 className="font-bold mt-14 text-2xl  text-cyan-300">Controls</h3>
+			<Card className=" mt-5 items-center grid p-8 pb-0 grid-cols-2  self-center gap-10">
 				{controlData.map((controls) => (
 					<Button
 						key={controls.id}
@@ -61,7 +62,7 @@ export default function Controls() {
 						{controls.icon} {controls.buttonName}
 					</Button>
 				))}
-			</div>
+			</Card>
 		</>
 	);
 }
