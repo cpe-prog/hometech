@@ -31,7 +31,7 @@ export default function Controls() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const path = "/Controls"; // Assuming all control data is under this path
+				const path = "/Controls";
 				const valueRef = ref(database, path);
 
 				const snapshot = await get(valueRef);
