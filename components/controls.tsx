@@ -10,7 +10,7 @@ import { get, ref, set } from "firebase/database";
 import { useEffect, useState } from "react";
 
 export type StateType = {
-	dinning: boolean;
+	dining: boolean;
 	kitchen: boolean;
 	bedroom: boolean;
 	firekiller: boolean;
@@ -20,7 +20,7 @@ export type StateType = {
 
 export default function Controls() {
 	const [state, setState] = useState<StateType>({
-		dinning: false,
+		dining: false,
 		kitchen: false,
 		bedroom: false,
 		firekiller: false,
@@ -74,7 +74,7 @@ export default function Controls() {
 					<Button
 						key={controls.id}
 						onClick={() => handleClick(controls.id)}
-						className={`w-36 mb-8 flex justify-start ${
+						className={`w-40 mb-8 flex justify-start ${
 							state[controls.id] ? "bg-blue-400" : ""
 						}`}
 					>

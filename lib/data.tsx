@@ -9,9 +9,9 @@ type Control = {
 
 export const controlData: Control[] = [
 	{
-		id: "dinning",
+		id: "dining",
 		icon: <Lightbulb />,
-		buttonName: "Dinning Light",
+		buttonName: "Dining Light",
 	},
 	{
 		id: "kitchen",
