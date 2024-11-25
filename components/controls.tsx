@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { controlData } from "@/lib/data";
 import database from "@/lib/firebase.config";
-import { ref, set } from "firebase/database";
-import { useState } from "react";
+import { get, ref, set } from "firebase/database";
+import { useEffect, useState } from "react";
 
 export type StateType = {
 	dinning: boolean;
@@ -27,6 +27,23 @@ export default function Controls() {
 		electricfan: false,
 		airconditioner: false,
 	});
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const path = "/Controls"; // Assuming all control data is under this path
+				const valueRef = ref(database, path);
+
+				const snapshot = await get(valueRef);
+				if (snapshot.exists()) {
+					setState(snapshot.val());
+				}
+			} catch (error) {
+				console.error("Error fetching data: ", error);
+			}
+		};
+		fetchData();
+	}, []);
 
 	const handleClick = async (id: keyof StateType) => {
 		setState((prevState) => {
@@ -52,12 +69,14 @@ export default function Controls() {
 	return (
 		<>
 			<h3 className="font-bold mt-14 text-2xl  text-cyan-300">Controls</h3>
-			<Card className=" mt-5 items-center grid p-8 pb-0 grid-cols-2  self-center gap-10">
+			<Card className=" mt-5 items-center justify-center flex flex-wrap  p-8 pb-0 gap-10">
 				{controlData.map((controls) => (
 					<Button
 						key={controls.id}
 						onClick={() => handleClick(controls.id)}
-						className="w-36 mb-8 flex justify-start"
+						className={`w-36 mb-8 flex justify-start ${
+							state[controls.id] ? "bg-blue-400" : ""
+						}`}
 					>
 						{controls.icon} {controls.buttonName}
 					</Button>
