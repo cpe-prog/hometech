@@ -1,33 +1,40 @@
+import { StateType } from "@/components/controls";
 import { AirVent, Fan, FireExtinguisher, Lightbulb } from "lucide-react";
 
-export const controlData = [
+type Control = {
+	id: keyof StateType; // Ensure IDs match StateType keys
+	icon: React.ReactNode;
+	buttonName: string;
+};
+
+export const controlData: Control[] = [
 	{
-		id: 1,
+		id: "dinning",
 		icon: <Lightbulb />,
 		buttonName: "Dinning Light",
 	},
 	{
-		id: 2,
+		id: "kitchen",
 		icon: <Lightbulb />,
 		buttonName: "Kitchen Light",
 	},
 	{
-		id: 3,
+		id: "bedroom",
 		icon: <Lightbulb />,
 		buttonName: "Bedroom Light",
 	},
 	{
-		id: 4,
+		id: "firekiller",
 		icon: <FireExtinguisher />,
 		buttonName: "Fire Killer",
 	},
 	{
-		id: 5,
+		id: "electricfan",
 		icon: <Fan />,
 		buttonName: "Electric Fan",
 	},
 	{
-		id: 6,
+		id: "airconditioner",
 		icon: <AirVent />,
 		buttonName: "Air conditioner",
 	},

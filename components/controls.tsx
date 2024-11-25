@@ -1,16 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { Button } from "@/components/ui/button";
 
 import { controlData } from "@/lib/data";
+import database from "@/lib/firebase.config";
+import { ref, set } from "firebase/database";
 import { useState } from "react";
 
-type ControlType = {
-	id: keyof StateType; // id must match a key in StateType
-	label: string;
-};
-
-type StateType = {
+export type StateType = {
 	dinning: boolean;
 	kitchen: boolean;
 	bedroom: boolean;
@@ -19,13 +17,7 @@ type StateType = {
 	airconditioner: boolean;
 };
 
-export const Controls = () => {
-	// const [dinning, setDinning] = useState(false);
-	// const [kitchen, setKitchen] = useState(false);
-	// const [bedroom, setBedroom] = useState(false);
-	// const [firekiller, setFirekiller] = useState(false);
-	// const [electricfan, setElectricFan] = useState(false);
-	// const [airconditioner, setAirConditioner] = useState(false);
+export default function Controls() {
 	const [state, setState] = useState<StateType>({
 		dinning: false,
 		kitchen: false,
@@ -35,12 +27,25 @@ export const Controls = () => {
 		airconditioner: false,
 	});
 
-	const handleClick = (id: keyof StateType): void => {
-		setState((prevState) => ({
-			...prevState,
-			[id]: !prevState[id],
-		}));
-		console.log(`${id} toggled to`, !state[id]);
+	const handleClick = async (id: keyof StateType) => {
+		setState((prevState) => {
+			const updatedState = {
+				...prevState,
+				[id]: !prevState[id],
+			};
+
+			const path = `/Controls/${id}`;
+			const valueRef = ref(database, path);
+
+			set(valueRef, updatedState[id])
+				.then(() => {
+					console.log(`${id} toggled to`, updatedState[id]);
+				})
+				.catch((error) => {
+					console.error(`Failed to update ${id}:`, error);
+				});
+			return updatedState;
+		});
 	};
 
 	return (
@@ -51,7 +56,7 @@ export const Controls = () => {
 					<Button
 						key={controls.id}
 						onClick={() => handleClick(controls.id)}
-						className="w-36 mb-8"
+						className="w-36 mb-8 flex justify-start"
 					>
 						{controls.icon} {controls.buttonName}
 					</Button>
@@ -59,4 +64,4 @@ export const Controls = () => {
 			</div>
 		</>
 	);
-};
+}
