@@ -1,5 +1,5 @@
 import { StateType } from "@/components/controls";
-import { AirVent, Fan, FireExtinguisher, Lightbulb } from "lucide-react";
+import { AirVent, Fan, Lightbulb } from "lucide-react";
 
 type Control = {
 	id: keyof StateType; // Ensure IDs match StateType keys
@@ -23,11 +23,7 @@ export const controlData: Control[] = [
 		icon: <Lightbulb />,
 		buttonName: "Bedroom Light",
 	},
-	{
-		id: "firekiller",
-		icon: <FireExtinguisher />,
-		buttonName: "Fire Killer",
-	},
+
 	{
 		id: "electricfan",
 		icon: <Fan />,

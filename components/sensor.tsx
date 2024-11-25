@@ -68,10 +68,6 @@ export default function Sensor() {
 		if (values === 0) {
 			sirenAudio.pause();
 			sirenAudio.currentTime = 0;
-			// toast({
-			// 	title: "Fire Resolved",
-			// 	description: `Time resolved: ${formatterDate}`,
-			// });
 		} else {
 			sirenAudio.play();
 		}

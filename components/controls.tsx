@@ -13,7 +13,6 @@ export type StateType = {
 	dining: boolean;
 	kitchen: boolean;
 	bedroom: boolean;
-	firekiller: boolean;
 	electricfan: boolean;
 	airconditioner: boolean;
 };
@@ -23,7 +22,6 @@ export default function Controls() {
 		dining: false,
 		kitchen: false,
 		bedroom: false,
-		firekiller: false,
 		electricfan: false,
 		airconditioner: false,
 	});
